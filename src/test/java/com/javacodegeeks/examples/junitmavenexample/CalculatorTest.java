@@ -1,69 +1,68 @@
 package com.javacodegeeks.examples.junitmavenexample;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
+import org.apache.http.auth.*;
 import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CalculatorTest {
-	private static ICalculator calculator;
+	 private WebDriver driver;		
+	 
+	 @Test
+	 public void test() {
+		 
+	 System.setProperty("webdriver.gecko.driver","D:\\Selenium\\Firefox driver\\geckodriver.exe");
+	
+	  driver = new FirefoxDriver();
+	 //Create a new instance of Firefox Browser
+	  
+     System.out.println("1");
+	 
+	 driver.get("https://www.google.com/");
+	// System.out.println("2");
+	 
+     //Maximize the Browser window
+     driver.manage().window().maximize();
+   //  System.out.println("3");
 
-	@BeforeClass
-	public static void initCalculator() {
-		calculator = new Calculator();
-	}
-
-	@Before
-	public void beforeEachTest() {
-		System.out.println("This is executed before each Test");
-	}
-
-	@After
-	public void afterEachTest() {
-		System.out.println("This is exceuted after each Test");
-	}
-
-	@Test
-	public void testSum() {
-		int result = calculator.sum(3, 4);
-
-		assertEquals(7, result);
-	}
-
-	@Test
-	public void testDivison() {
-		try {
-			int result = calculator.divison(10, 2);
-
-			assertEquals(5, result);
-		} catch (Exception e) {
-			e.printStackTrace(System.err);
-		}
-	}
-
-	@Test(expected = Exception.class)
-	public void testDivisionException() throws Exception {
-		calculator.divison(10, 0);
-	}
-
-	@Ignore
-	@Test
-	public void testEqual() {
-		boolean result = calculator.equalIntegers(20, 20);
-
-		assertFalse(result);
-	}
-
-	@Ignore
-	@Test
-	public void testSubstraction() {
-		int result = 10 - 3;
-
-		assertTrue(result == 9);
-	}
+     try {
+    	    Thread.sleep(1000);                 //1000 milliseconds is one second.
+    	} catch(InterruptedException ex) {
+    	    Thread.currentThread().interrupt();
+    	}
+     
+     
+     //Get the current page URL and store the value in variable 'str'
+     String str = driver.getCurrentUrl();
+     //System.out.println("4");
+   
+     //Print the value of variable in the console
+     System.out.println("The current URL is " + str);
+     
+     WebElement element = driver.findElement(By.id("sb_ifc0"));
+     
+     element.sendKeys("This is a Text i wrote as a test");
+     
+     try {
+    	 driver.close();
+ 	    Thread.sleep(3000);                 //1000 milliseconds is one second.
+ 	} catch(InterruptedException ex) {
+ 	    Thread.currentThread().interrupt();
+ 	}
+     driver.quit();
+     
+	 }
+	 
+	 @Test
+	 public void check() {
+		 
+		 System.out.println("Test function call...ok");
+		 
+	 }
+	 
 }
