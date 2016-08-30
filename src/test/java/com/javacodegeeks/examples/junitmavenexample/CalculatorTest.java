@@ -1,5 +1,7 @@
 package com.javacodegeeks.examples.junitmavenexample;
 
+import java.util.List;
+
 import org.apache.http.auth.*;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -19,16 +21,13 @@ public class CalculatorTest {
 	 System.setProperty("webdriver.gecko.driver","D:\\Selenium\\Firefox driver\\geckodriver.exe");
 	
 	  driver = new FirefoxDriver();
-	 //Create a new instance of Firefox Browser
-	  
-     System.out.println("1");
+	 //Create a new instance of Firefox Browse
 	 
 	 driver.get("https://www.google.com/");
-	// System.out.println("2");
+	// System.out.println("Test");
 	 
      //Maximize the Browser window
      driver.manage().window().maximize();
-   //  System.out.println("3");
 
      try {
     	    Thread.sleep(1000);                 //1000 milliseconds is one second.
@@ -39,22 +38,34 @@ public class CalculatorTest {
      
      //Get the current page URL and store the value in variable 'str'
      String str = driver.getCurrentUrl();
-     //System.out.println("4");
    
      //Print the value of variable in the console
      System.out.println("The current URL is " + str);
      
-     WebElement element = driver.findElement(By.id("sb_ifc0"));
+      /*
+     List<WebElement> elements = driver.findElements(By.tagName("input"));
+     for(WebElement e : elements) {
+    	  System.out.println(e.getAttribute("spellcheck"));
+    }
+     */
      
-     element.sendKeys("This is a Text i wrote as a test");
+     WebElement element = driver.findElement(By.cssSelector("input[spellcheck='false']"));
      
-     try {
-    	 driver.close();
- 	    Thread.sleep(3000);                 //1000 milliseconds is one second.
- 	} catch(InterruptedException ex) {
- 	    Thread.currentThread().interrupt();
- 	}
-     driver.quit();
+     if (element.isDisplayed())
+    	 System.out.println( "Input field found and is visible" );
+     else
+    	 System.out.println("Input field is NOT visible");
+     
+     element.sendKeys("Put some Text into the Inputfield");
+     
+	 try {
+		 driver.close();
+		 Thread.sleep(1000);                 //1000 milliseconds
+	 } catch(InterruptedException ex) {
+		 Thread.currentThread().interrupt();
+	 }
+	 
+	 driver.quit();
      
 	 }
 	 
