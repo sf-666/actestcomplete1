@@ -23,7 +23,7 @@ public class CalculatorTest {
 	  driver = new FirefoxDriver();
 	 //Create a new instance of Firefox Browse
 	 
-	 driver.get("https://www.google.com/");
+	 driver.get("http://localhost/testweb1/");
 	// System.out.println("Test");
 	 
      //Maximize the Browser window
@@ -40,7 +40,7 @@ public class CalculatorTest {
      String str = driver.getCurrentUrl();
    
      //Print the value of variable in the console
-     System.out.println("The current URL is " + str);
+     System.out.println("The current URL is 1 " + str);
      
       /*
      List<WebElement> elements = driver.findElements(By.tagName("input"));
@@ -49,7 +49,9 @@ public class CalculatorTest {
     }
      */
      
-     WebElement element = driver.findElement(By.cssSelector("input[spellcheck='false']"));
+     WebElement element = driver.findElement(By.cssSelector("h1[id='changeme']"));
+     
+     System.out.println( element.getText() );
      
      if (element.isDisplayed())
     	 System.out.println( "Input field found and is visible" );
