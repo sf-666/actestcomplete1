@@ -74,7 +74,7 @@ public class CalculatorTest {
 	 @Test
 	 public void check() {
 		 
-		 System.out.println("Test function call...ok");
+		 System.out.println("Test function call....ok");
 		 
 	 }
 	 
