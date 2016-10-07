@@ -54,7 +54,7 @@ public class CalculatorTest {
      System.out.println( element.getText() );
      
      if (element.isDisplayed())
-    	 System.out.println( "Input field found and is visible" );
+    	 System.out.println( "Input field found  and is visible" );
      else
     	 System.out.println("Input field is NOT visible");
      
